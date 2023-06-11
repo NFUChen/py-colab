@@ -5,7 +5,6 @@ from flask_cors import CORS
 from flask_socketio import SocketIO
 import os
 from util import CommandExecutor
-from message_generator import MessageGenerator
 
 
 PORT = os.environ['PORT']
@@ -13,7 +12,6 @@ app = Flask(__name__)
 CORS(app)
 sio = SocketIO(app, cors_allowed_origins="*")
 cmd_executor = CommandExecutor()
-msg_generator = MessageGenerator()
 
 
 def emit_log(log: str):

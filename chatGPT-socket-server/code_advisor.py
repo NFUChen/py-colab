@@ -1,4 +1,4 @@
-from typing import Literal, Generator
+from typing import Literal, Iterable
 import dotenv
 import os
 import openai
@@ -43,7 +43,7 @@ class CodeAdvisor:
         return self.messages[1:]
 
         
-    def answer(self, question: str) -> Generator[str]:
+    def answer(self, question: str) -> Iterable[str]:
         self._add_message("user", f"{question}\n")
         generator = openai.ChatCompletion.create(
             model= "gpt-3.5-turbo",
