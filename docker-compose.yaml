@@ -1,0 +1,55 @@
+version: '3.3'
+services:
+  dsp:
+    restart: always
+    container_name: "template-dsp"
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "5173:5173"
+    volumes:
+      - ./frontend/src:/app/src
+
+  server:
+    restart: always
+    container_name: "socket-server"
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    environment:
+      - PORT=8080
+
+  python-interpreter:
+    restart: always
+    container_name: "python-interpreter"
+    build:
+      context: ./python-interpreter
+      dockerfile: Dockerfile
+    ports:
+      - "8081:8081"
+    environment:
+      - PORT=8081
+
+  redis:
+    container_name: redis-server
+    restart: always
+    image: redis:latest
+    ports:
+      - 6379:6379
+
+  chatgpt-socket-server:
+    restart: always
+    container_name: "chatgpt-socket-server"
+    build:
+      context: ./chatGPT-socket-server
+      dockerfile: Dockerfile
+    ports:
+      - "8082:8082"
+    environment:
+      - PORT=8082
+
+  
+

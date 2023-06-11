@@ -1,0 +1,7 @@
+Flask==2.2.2
+Flask-Cors==3.0.10
+flask-socketio==5.3.4
+eventlet==0.33.3
+redis==4.5.5
+requests==2.31.0
+paho-mqtt==1.6.1
