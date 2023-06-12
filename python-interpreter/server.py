@@ -1,4 +1,4 @@
-from util import save_code_with_path, CommandExecutor, cmd_executor
+from util import save_code_with_path, list_modules,CommandExecutor, cmd_executor, venv_pip
 
 from flask import Flask, request
 from flask_cors import CORS
@@ -12,7 +12,7 @@ sio = SocketIO(app, cors_allowed_origins="*")
 
 
 
-venv_pip = "/venv/bin/pip3"
+
 
 def emit_log(log: str):
     sio.emit('on_log_resp', log)
@@ -120,6 +120,14 @@ def kill_process():
         "operation": "kill",
     }
 
+@app.route("/list_modules", methods=['GET'])
+def list_modules_route():
+    modules = list_modules()
+    return {
+        "message": "OK",
+        "operation": "list modules",
+        "modules": modules
+    }
 
 
 if __name__ == "__main__":
