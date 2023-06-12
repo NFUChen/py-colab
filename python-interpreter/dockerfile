@@ -2,11 +2,12 @@ FROM python:3.10
 
 WORKDIR /app
 
-COPY requirements.txt .
+COPY requirements.txt clear_venv.sh ./
 
 RUN pip install -r requirements.txt && \
     pip3 freeze > depedencies.orig && \
-    mkdir -p /src
+    mkdir -p /src && python3 -m venv /venv && \
+    chmod u+x clear_venv.sh
 
 COPY . .
 

@@ -1,18 +1,18 @@
-from util import save_code_with_path
+from util import save_code_with_path, CommandExecutor, cmd_executor
 
 from flask import Flask, request
 from flask_cors import CORS
 from flask_socketio import SocketIO
 import os
-from util import CommandExecutor
-
 
 PORT = os.environ['PORT']
 app = Flask(__name__)
 CORS(app)
 sio = SocketIO(app, cors_allowed_origins="*")
-cmd_executor = CommandExecutor()
 
+
+
+venv_pip = "/venv/bin/pip3"
 
 def emit_log(log: str):
     sio.emit('on_log_resp', log)
@@ -78,7 +78,7 @@ def save_code():
 def uninstall_package():
     data = request.get_json()
     package_name = data['package_name']
-    cmd = f"pip3 uninstall -y {package_name}"
+    cmd = f"{venv_pip} uninstall -y {package_name}"
 
     handle_sio_with_cmd_executor(sio, cmd_executor, cmd)
 
@@ -92,7 +92,7 @@ def uninstall_package():
 def install_package():
     data = request.get_json()
     package_name = data['package_name']
-    cmd = f"pip3 install {package_name}"
+    cmd = f"{venv_pip} install {package_name}"
 
     handle_sio_with_cmd_executor(sio, cmd_executor, cmd)
         
@@ -101,6 +101,16 @@ def install_package():
         "operation": "install",
         "package_name": package_name,
     }
+
+@app.route("/clear_venv", methods=['GET'])
+def clear_venv():
+    cmd = f"bash ./clear_venv.sh"
+    handle_sio_with_cmd_executor(sio, cmd_executor, cmd)
+    return {
+        "message": "OK",
+        "operation": "clear venv",
+    }
+
 
 @app.route("/kill_process", methods=['GET'])
 def kill_process():
