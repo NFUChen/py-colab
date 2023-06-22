@@ -13,7 +13,7 @@ CORS(app)
 sio = SocketIO(app, cors_allowed_origins="*")
 
 def emit_log(log: str):
-    sio.emit('on_log_resp', log)
+    sio.emit('on_chat_messages_resp', log)
 
 @app.route("/ask", methods=['POST'])
 def ask():

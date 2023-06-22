@@ -22,9 +22,9 @@ services:
     environment:
       - PORT=8080
 
-  python-interpreter:
+  py-interpreter:
     restart: always
-    container_name: "python-interpreter"
+    container_name: "py-interpreter"
     build:
       context: ./python-interpreter
       dockerfile: Dockerfile
@@ -32,6 +32,18 @@ services:
       - "8081:8081"
     environment:
       - PORT=8081
+    volumes:
+      - ./py-colab/src:/src
+
+  # py-language-server:
+  #   restart: always
+  #   container_name: "py-language-server"
+  #   build:
+  #     context: ./python-language-server
+  #     dockerfile: dockerfile
+  #   network_mode: "host"
+  #   volumes:
+  #     - ./py-colab/src:/src
 
   redis:
     container_name: redis-server

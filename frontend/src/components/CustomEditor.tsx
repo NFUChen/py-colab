@@ -32,6 +32,14 @@ export const CustomEditor: React.FC = () => {
     });
 
     editor.focus();
+
+    editor.onDidChangeCursorSelection(evt => {
+      if (window) {
+        console.log(window.getSelection().toString());
+        const currentPosition = editor.getPosition();
+        console.log(currentPosition);
+      }
+    });
   };
 
   const handleChange = (value: string | undefined, evt: monaco.editor.IModelContentChangedEvent): void => {

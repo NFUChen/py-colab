@@ -1,4 +1,4 @@
-const IP = "192.168.1.115";
+const IP = "172.20.10.4";
 
 export const controllerServerUrl = `http://${IP}:8080`;
 export const interpreterServerUrl = `http://${IP}:8081`;

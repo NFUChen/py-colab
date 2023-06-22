@@ -1,4 +1,4 @@
-from util import save_code_with_path, list_modules,CommandExecutor, cmd_executor, venv_pip
+from util import save_code_with_path, list_modules,CommandExecutor, cmd_executor, venv_pip, venv_py
 
 from flask import Flask, request
 from flask_cors import CORS
@@ -54,7 +54,7 @@ def log():
 def execute_python_code():
     data = request.get_json()
     file_name = data['file_name']
-    cmd = f"python3 -u /src/{file_name}"
+    cmd = f"{venv_py} -u /src/{file_name}"
 
     handle_sio_with_cmd_executor(sio, cmd_executor, cmd)
     return {

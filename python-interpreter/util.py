@@ -2,6 +2,7 @@ from command_executor import CommandExecutor
 import time
 
 venv_pip = "/venv/bin/pip3"
+venv_py = "/venv/bin/python3"
 cmd_executor= CommandExecutor()
 
 def save_code_with_path(path: str, code: str) -> None:
