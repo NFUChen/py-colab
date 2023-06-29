@@ -155,7 +155,7 @@ export const PackageManagerPanel = () => {
                 type="text"
                 value={inputPackage}
                 placeholder="What package would you like to install ?"
-                className="input input-bordered w-full bg-white text-black"
+                className="input-bordered input w-full bg-white text-black"
               />
               <Button label="Install" onClick={() => handleInstall(inputPackage)} isDisable={isInstalling} />
             </div>

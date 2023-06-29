@@ -11,7 +11,7 @@ export const LogPanel: React.FC = () => {
   const { data: log } = useSocket<string[]>(interpreterServerUrl, "on_log", "");
   const { data: answer } = useSocket<IAnswer[]>(chatGptServerUtl, "on_log", "");
   return (
-    <div className="flex flex-col w-screen">
+    <div className="flex w-screen flex-col">
       <div>
         <h1>Log</h1>
         <div className="min-h-20vh max-h-40vh">

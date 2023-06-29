@@ -1,9 +1,11 @@
 import { CollaborativeEditor } from "./components/CollaborativeEditor";
+import { PackageManagerPanel } from "./components/PackageMangerPanel";
 
 function App() {
   return (
     <>
-      <CollaborativeEditor />
+      <PackageManagerPanel />
+      {/* <CollaborativeEditor /> */}
     </>
   );
 }

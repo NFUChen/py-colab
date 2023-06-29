@@ -9,7 +9,7 @@ interface IModule {
 
 interface IModuleAPI {
   message: string;
-  packages?: IModule[];
+  modules?: IModule[];
   operation: string;
 }
 export const usePythonPackage = () => {
@@ -20,9 +20,9 @@ export const usePythonPackage = () => {
 
   const fetchPackageInfo = () => {
     axios
-      .get<IModuleAPI>(`${interpreterServerUrl}/list_packages`)
+      .get<IModuleAPI>(`${interpreterServerUrl}/list_modules`)
       .then(resp => {
-        setPackages(resp.data.packages || []);
+        setPackages(resp.data.modules || []);
       })
       .catch(err => setServerError(err.message));
   };

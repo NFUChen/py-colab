@@ -22,7 +22,7 @@ const Button = ({
 }) => {
   return (
     <button
-      className="btn hover:-translate-y-1 duration-500 disabled:opacity-50 disabled:cursor-not-allowed disabled:bg-gray-100"
+      className="btn duration-500 hover:-translate-y-1 disabled:cursor-not-allowed disabled:bg-gray-100 disabled:opacity-50"
       onClick={handleClick}
       disabled={isDisabled}
     >
@@ -47,10 +47,10 @@ const RawHTML = ({ html }: { html: string }) => {
         prose 
         text-white 
         prose-headings:text-white
-        prose-pre:bg-gray-700 
-        prose-code:text-white 
-        prose-strong:text-slate-100
-        prose-a:text-blue-400`}
+        prose-a:text-blue-400 
+        prose-strong:text-slate-100 
+        prose-code:text-white
+        prose-pre:bg-gray-700`}
       dangerouslySetInnerHTML={{
         __html: html
       }}
@@ -92,15 +92,15 @@ export const ChatPanel = () => {
 
   return (
     <div>
-      <div className="min-h-[80vh] flex flex-col">
+      <div className="flex min-h-[80vh] flex-col">
         {messages.map(({ role, content }, idx) => (
           <ChatConversion role={role} content={content} key={`${idx}-${content}`} />
         ))}
       </div>
-      <div className="flex space-x-3 items-center p-5 bg-black">
+      <div className="flex items-center space-x-3 bg-black p-5">
         <textarea
           onChange={handleChange}
-          className="w-full min-h-[10vh] textarea textarea-bordered text-area-ghost text-black"
+          className="text-area-ghost textarea-bordered textarea min-h-[10vh] w-full text-black"
           placeholder="What would you like to ask ?"
         ></textarea>
         <Button label="Submit" handleClick={handleSubmit} isDisabled={isAnswering || isEmptyPrompt} />
